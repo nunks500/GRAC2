@@ -46,6 +46,11 @@ MySceneGraph.prototype.onXMLReady=function()
  * Example of method that parses elements of one block and stores information in a specific data structure
  */
 MySceneGraph.prototype.parseGlobalsExample= function(rootElement) {
+		var x = rootElement.nodeName;
+		
+	if (x !== "scene" || x == null  || x.length==0) {
+		return "scene element is missing.";
+	}
 	
 	var elems =  rootElement.getElementsByTagName('globals');
 	if (elems == null) {
