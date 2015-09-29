@@ -35,7 +35,7 @@ main=function()
 	// Check console for loading errors
 	var myGraph = new MySceneGraph(filename, myScene);
 	// start
-	console.log(myGraph.gettransx());
+	//console.log(myGraph.gettransx());
 
     app.run();
 
