@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-16" standalone="yes"?>
 <scene>
-
+<initials>
+<translate x="30" y="0" z="0"  /> 
+</initials>
     <globals background="0 0 0 0" drawmode="fill" shading="gouraud" cullface="none" cullorder="CCW" /> 
 	<list>
 </list>

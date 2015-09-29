@@ -8,7 +8,7 @@ function MySceneGraph(filename, scene) {
 		
 	// File reading 
 	this.reader = new CGFXMLreader();
-
+	this.reader2 = new CGFXMLreader();
 	/*
 	 * Read the contents of the xml file, and refer to this class for loading and error handlers.
 	 * After the file is read, the reader calls onXMLReady on this object.
@@ -51,6 +51,16 @@ MySceneGraph.prototype.parseGlobalsExample= function(rootElement) {
 	if (x !== "scene" || x == null  || x.length==0) {
 		return "scene element is missing.";
 	}
+
+	var y = rootElement.getElementsByTagName('initials');
+	 if(y!== null){
+	 	var xtrans,ytrans,ztrans;
+		var z = rootElement.getElementsByTagName('translate');
+		var translation = z[0];
+		xtrans = this.reader.getFloat(translation, 'x');
+		ytrans = this.reader.getFloat(translation, 'y');
+		ztrans = this.reader.getFloat(translation, 'z');
+	 }
 	
 	var elems =  rootElement.getElementsByTagName('globals');
 	if (elems == null) {
@@ -63,6 +73,7 @@ MySceneGraph.prototype.parseGlobalsExample= function(rootElement) {
 
 	// various examples of different types of access
 	var globals = elems[0];
+	console.log(globals);
 	this.background = this.reader.getRGBA(globals, 'background');
 	this.drawmode = this.reader.getItem(globals, 'drawmode', ["fill","line","point"]);
 	this.cullface = this.reader.getItem(globals, 'cullface', ["back","front","none", "frontandback"]);
