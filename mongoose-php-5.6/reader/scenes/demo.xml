@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-16" standalone="yes"?>
 <scene>
 <initials>
-<translate x="30" y="0" z="0"  /> 
+<translate x="0" y="0" z="0"  /> 
+<scale sx="2" sy="2" sz="2" /> 
+<reference length="3" /> 
 </initials>
     <globals background="0 0 0 0" drawmode="fill" shading="gouraud" cullface="none" cullorder="CCW" /> 
 	<list>

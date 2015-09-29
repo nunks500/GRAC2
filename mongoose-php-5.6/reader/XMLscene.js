@@ -19,9 +19,9 @@ XMLscene.prototype.init = function (application) {
     this.gl.enable(this.gl.DEPTH_TEST);
 	this.gl.enable(this.gl.CULL_FACE);
     this.gl.depthFunc(this.gl.LEQUAL);
-
-	this.axis=new CGFaxis(this);
-
+		
+	
+	this.obj2 = new MyObject(this);
 };
 
 XMLscene.prototype.initLights = function () {
@@ -36,7 +36,8 @@ XMLscene.prototype.initLights = function () {
 };
 
 XMLscene.prototype.initCameras = function () {
-    this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
+this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
+
 };
 
 XMLscene.prototype.setDefaultAppearance = function () {
@@ -50,11 +51,16 @@ XMLscene.prototype.setDefaultAppearance = function () {
 // As loading is asynchronous, this may be called already after the application has started the run loop
 XMLscene.prototype.onGraphLoaded = function () 
 {
-	console.log(this.graph.xtrans);
-	console.log(this.graph.ytrans);
+	 if(this.graph.q.length !== 0){
+	this.axis=new CGFaxis(this,this.graph.len);}
+	else
+	this.axis = new CGFaxis(this);
+	
 	this.gl.clearColor(this.graph.background[0],this.graph.background[1],this.graph.background[2],this.graph.background[3]);
 	this.lights[0].setVisible(true);
     this.lights[0].enable();
+    	return true;
+  
 };
 
 XMLscene.prototype.display = function () {
@@ -73,41 +79,59 @@ XMLscene.prototype.display = function () {
 	this.applyViewMatrix();
 
 	// Draw axis
+	 if(typeof this.axis !== "undefined"){
 	this.axis.display();
-	this.setDefaultAppearance();
 	
-	 var tra = [   1.0, 0.0, 0.0, 0.0,
-                  0.0, 1.0, 0.0, 0.0,
-                  0.0, 0.0, 1.0, 0.0,
-                  5.0, 0.0, 2.0, 1.0  ];
+	 }
+
+	this.setDefaultAppearance();
 
 	// Rotate 30 degrees around Y
 	// These constants would normally be pre-computed at initialization time
 	// they are placed here just to simplify the example
 	
 	var deg2rad=Math.PI/180.0;
-	var a_rad=30.0*deg2rad;
+	var a_rad=0.0*deg2rad;
 	var cos_a = Math.cos(a_rad);
 	var sin_a = Math.sin(a_rad);
 
-    var rot = [ cos_a,  0.0,  -sin_a,  0.0,
+    var tra = [   1.0, 0.0, 0.0, 0.0,
+                  0.0, 1.0, 0.0, 0.0,
+                  0.0, 0.0, 1.0, 0.0,
+                  this.graph.xtrans, this.graph.ytrans, this.graph.ztrans, 1.0  ];
+
+    var roty = [ cos_a,  0.0,  -sin_a,  0.0,
                 0.0,    1.0,   0.0,    0.0,
                 sin_a,  0.0,   cos_a,  0.0,
                 0.0,    0.0,   0.0,    1.0 ];
+                
+	 var rotx = [1.0,  0.0,  0.0,  0.0,
+                0.0,  cos_a, -sin_a, 0.0,
+                0.0,  sin_a,   cos_a,  0.0,
+                0.0,    0.0,   0.0,    1.0 ];
+     var rotz = [cos_a,  -sin_a,  0.0,  0.0,
+                sin_a,  cos_a, 0.0, 0.0,
+                0.0,  0.0,   1.0,  0.0,
+                0.0,    0.0,   0.0,    1.0 ];           
+
+
 
 	// Scaling by (5,2,1)
 
-    var sca = [ 5.0, 0.0, 0.0, 0.0,
-                0.0, 2.0, 0.0, 0.0,
-                0.0, 0.0, 1.0, 0.0,
+    var sca = [ this.graph.scalax, 0.0, 0.0, 0.0,
+                0.0, this.graph.scalay, 0.0, 0.0,
+                0.0, 0.0,this.graph.scalaz, 0.0,
                 0.0, 0.0, 0.0, 1.0  ];
-
 
 	// ---- END Background, camera and axis setup
 
 	// it is important that things depending on the proper loading of the graph
 	// only get executed after the graph has loaded correctly.
 	// This is one possible way to do it
+	this.multMatrix(tra);
+	this.multMatrix(sca);
+	this.multMatrix(roty);
+	this.obj2.display();
 	if (this.graph.loadedOk)
 	{
 		this.lights[0].update();

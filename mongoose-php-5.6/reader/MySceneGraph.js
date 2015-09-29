@@ -38,6 +38,7 @@ MySceneGraph.prototype.onXMLReady=function()
 	
 	// As the graph loaded ok, signal the scene so that any additional initialization depending on the graph can take place
 	this.scene.onGraphLoaded();
+		
 };
 
 
@@ -55,10 +56,25 @@ MySceneGraph.prototype.parseGlobalsExample= function(rootElement) {
 	var y = rootElement.getElementsByTagName('initials');
 	 if(y!== null){
 		var z = rootElement.getElementsByTagName('translate');
+		if(z.length !== 0){
 		var translation = z[0];
 		this.xtrans = this.reader.getFloat(translation, 'x');
 		this.ytrans = this.reader.getFloat(translation, 'y');
 		this.ztrans = this.reader.getFloat(translation, 'z');
+		}
+		var p = rootElement.getElementsByTagName('scale');
+		if(p.length !== 0){
+			var scala = p[0];
+			this.scalax = this.reader.getFloat(scala, 'sx');
+			this.scalay = this.reader.getFloat(scala, 'sy');
+			this.scalaz = this.reader.getFloat(scala, 'sz');
+		}
+		this.q = rootElement.getElementsByTagName('reference');
+		
+		if (this.q.length !== 0){
+			var ax = this.q[0];
+			this.len = this.reader.getFloat(ax, 'length');
+		}
 		
 	 }
 	
@@ -73,7 +89,6 @@ MySceneGraph.prototype.parseGlobalsExample= function(rootElement) {
 
 	// various examples of different types of access
 	var globals = elems[0];
-	console.log(globals);
 	this.background = this.reader.getRGBA(globals, 'background');
 	this.drawmode = this.reader.getItem(globals, 'drawmode', ["fill","line","point"]);
 	this.cullface = this.reader.getItem(globals, 'cullface', ["back","front","none", "frontandback"]);
