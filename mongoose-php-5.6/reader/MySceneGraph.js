@@ -1,4 +1,4 @@
-
+var xtrans;
 function MySceneGraph(filename, scene) {
 	this.loadedOk = null;
 	
@@ -54,10 +54,11 @@ MySceneGraph.prototype.parseGlobalsExample= function(rootElement) {
 
 	var y = rootElement.getElementsByTagName('initials');
 	 if(y!== null){
-	 	var xtrans,ytrans,ztrans;
+	 	var ytrans,ztrans;
 		var z = rootElement.getElementsByTagName('translate');
 		var translation = z[0];
 		xtrans = this.reader.getFloat(translation, 'x');
+		console.log(xtrans);
 		ytrans = this.reader.getFloat(translation, 'y');
 		ztrans = this.reader.getFloat(translation, 'z');
 	 }
@@ -110,4 +111,7 @@ MySceneGraph.prototype.onXMLError=function (message) {
 	this.loadedOk=false;
 };
 
+MySceneGraph.prototype.gettransx= function(){
+return xtrans;	
+};
 
