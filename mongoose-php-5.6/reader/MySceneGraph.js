@@ -93,6 +93,31 @@ MySceneGraph.prototype.parseGlobalsExample= function(rootElement) {
 
 
 	 }
+
+	 var il =  rootElement.getElementsByTagName('illumination');
+	 if (il.length !== 0) {
+		var il2 = rootElement.getElementsByTagName('ambient');
+		if(il2 !== null){
+		var ilum = il2[0];
+		this.ambienter = this.reader.getFloat(ilum,'r');
+		this.ambienteg = this.reader.getFloat(ilum,'g');
+		this.ambienteb = this.reader.getFloat(ilum,'b');
+		this.ambientea = this.reader.getFloat(ilum,'a');
+		}
+	
+	var back =  rootElement.getElementsByTagName('background');
+	 if (back.length !== 0) {
+		var backg = back[0];
+		this.backr = this.reader.getFloat(backg,'r');
+		this.backgg = this.reader.getFloat(backg,'g');
+		this.backb = this.reader.getFloat(backg,'b');
+		this.backa = this.reader.getFloat(backg,'a');
+	
+
+	}
+
+	}
+
 	
 	var elems =  rootElement.getElementsByTagName('globals');
 	if (elems == null) {

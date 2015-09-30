@@ -8,6 +8,10 @@
 <scale sx="1" sy="1" sz="1" /> 
 <reference length="3" /> 
 </initials>
+<illumination>
+<ambient r="205" g="0" b="0" a="0" />
+<background r="0" g="0" b="0" a="1"/>
+</illumination>
     <globals background="0 0 0 0" drawmode="fill" shading="gouraud" cullface="none" cullorder="CCW" /> 
 	<list>
 </list>

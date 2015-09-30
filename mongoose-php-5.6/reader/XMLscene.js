@@ -41,7 +41,11 @@ this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fro
 };
 
 XMLscene.prototype.setDefaultAppearance = function () {
+  if(typeof this.graph.ambienter !== "undefined")
+  this.setAmbient(this.graph.ambienter,this.graph.ambienteg, this.graph.ambienteb, this.graph.ambientea);	
+   else
     this.setAmbient(0.2, 0.4, 0.8, 1.0);
+    
     this.setDiffuse(0.2, 0.4, 0.8, 1.0);
     this.setSpecular(0.2, 0.4, 0.8, 1.0);
     this.setShininess(10.0);	
@@ -56,7 +60,8 @@ XMLscene.prototype.onGraphLoaded = function ()
 	else
 	this.axis = new CGFaxis(this);
 	
-	this.gl.clearColor(this.graph.background[0],this.graph.background[1],this.graph.background[2],this.graph.background[3]);
+//	this.gl.clearColor(1,0,0,0);
+this.gl.clearColor(this.graph.backr,this.graph.backgg,this.graph.backb,this.graph.backa);
 	this.lights[0].setVisible(true);
     this.lights[0].enable();
     	return true;
