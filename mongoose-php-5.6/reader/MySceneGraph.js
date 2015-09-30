@@ -118,6 +118,13 @@ MySceneGraph.prototype.parseGlobalsExample= function(rootElement) {
 
 	}
 
+	var luz = rootElement.getElementsByTagName('lights');
+	{
+		if (luz.length != 0){
+			var luze = rootElement.getElementsByTagName('light');
+		}
+	}
+
 	
 	var elems =  rootElement.getElementsByTagName('globals');
 	if (elems == null) {
