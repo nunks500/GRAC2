@@ -76,6 +76,22 @@ MySceneGraph.prototype.parseGlobalsExample= function(rootElement) {
 			this.len = this.reader.getFloat(ax, 'length');
 		}
 		
+		var q= rootElement.getElementsByTagName('rotation');
+		if(q.length !== 0){
+			var count = 0;
+			for(count=0;count<q.length;count++){
+				var ex = q[count];
+				this.rotx = this.reader.getItem(ex, 'axis', ["x","y","z"]);
+			if(this.rotx == 'x')
+			this.rotxangle = this.reader.getFloat(ex, 'angle');
+			else if(this.rotx == 'y')
+		this.rotyangle = this.reader.getFloat(ex, 'angle');
+		else if(this.rotx == 'z')
+		this.rotzangle = this.reader.getFloat(ex, 'angle');
+			}
+		}
+
+
 	 }
 	
 	var elems =  rootElement.getElementsByTagName('globals');

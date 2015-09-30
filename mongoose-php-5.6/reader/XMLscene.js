@@ -91,26 +91,32 @@ XMLscene.prototype.display = function () {
 	// they are placed here just to simplify the example
 	
 	var deg2rad=Math.PI/180.0;
-	var a_rad=0.0*deg2rad;
-	var cos_a = Math.cos(a_rad);
-	var sin_a = Math.sin(a_rad);
+	var a_radx=this.graph.rotxangle*deg2rad;
+	var a_rady=this.graph.rotyangle*deg2rad;
+	var a_radz=this.graph.rotzangle*deg2rad;
+	var cos_ax = Math.cos(a_radx);
+	var sin_ax = Math.sin(a_radx);
+	var cos_ay = Math.cos(a_rady);
+	var sin_ay = Math.sin(a_rady);
+	var cos_az = Math.cos(a_radz);
+	var sin_az = Math.sin(a_radz);
 
     var tra = [   1.0, 0.0, 0.0, 0.0,
                   0.0, 1.0, 0.0, 0.0,
                   0.0, 0.0, 1.0, 0.0,
                   this.graph.xtrans, this.graph.ytrans, this.graph.ztrans, 1.0  ];
 
-    var roty = [ cos_a,  0.0,  -sin_a,  0.0,
+    var roty = [ cos_ay,  0.0,  -sin_ay,  0.0,
                 0.0,    1.0,   0.0,    0.0,
-                sin_a,  0.0,   cos_a,  0.0,
+                sin_ay,  0.0,   cos_ay,  0.0,
                 0.0,    0.0,   0.0,    1.0 ];
                 
 	 var rotx = [1.0,  0.0,  0.0,  0.0,
-                0.0,  cos_a, -sin_a, 0.0,
-                0.0,  sin_a,   cos_a,  0.0,
+                0.0,  cos_ax, -sin_ax, 0.0,
+                0.0,  sin_ax,   cos_ax,  0.0,
                 0.0,    0.0,   0.0,    1.0 ];
-     var rotz = [cos_a,  -sin_a,  0.0,  0.0,
-                sin_a,  cos_a, 0.0, 0.0,
+     var rotz = [cos_az,  -sin_az,  0.0,  0.0,
+                sin_az,  cos_az, 0.0, 0.0,
                 0.0,  0.0,   1.0,  0.0,
                 0.0,    0.0,   0.0,    1.0 ];           
 
@@ -130,7 +136,16 @@ XMLscene.prototype.display = function () {
 	// This is one possible way to do it
 	this.multMatrix(tra);
 	this.multMatrix(sca);
+	
+	 if(typeof this.graph.rotxangle !== "undefined"){
+	this.multMatrix(rotx);
+	 }
+	 if(typeof this.graph.rotyangle !== "undefined"){
 	this.multMatrix(roty);
+	 }
+	 if(typeof this.graph.rotzangle !== "undefined"){
+	this.multMatrix(rotz);
+	 }
 	this.obj2.display();
 	if (this.graph.loadedOk)
 	{
