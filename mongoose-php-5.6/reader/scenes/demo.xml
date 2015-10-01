@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-16" standalone="yes"?>
 <scene>
 <initials>
+<frustum near="0.1" far="500"/> 
 <translate x="0" y="0" z="0"  />
 <rotation axis="z" angle="0" />
 <rotation axis="x" angle="0" />
@@ -14,6 +15,13 @@
 </illumination>
 <lights>
 <light id="1">                                    <!-- light identifier -->
+        <enable value ="1" />                         <!-- enable/disable -->
+        <position x="0" y="0" z="0" w="0" />       <!-- light position -->
+        <ambient r="0" g="0" b="0" a="0" />        <!-- ambient component -->
+        <diffuse r="0" g="0" b="0" a="0" />        <!-- diffuse component -->
+        <specular r="0" g="0" b="0" a="0" />       <!-- specular component -->
+    </light>
+    <light id="2">                                    <!-- light identifier -->
         <enable value ="1" />                         <!-- enable/disable -->
         <position x="0" y="0" z="0" w="0" />       <!-- light position -->
         <ambient r="0" g="0" b="0" a="0" />        <!-- ambient component -->

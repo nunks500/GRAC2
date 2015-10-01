@@ -41,6 +41,7 @@ MySceneGraph.prototype.onXMLReady=function()
 		
 };
 
+//CGFlight
 
 
 /*
@@ -55,6 +56,16 @@ MySceneGraph.prototype.parseGlobalsExample= function(rootElement) {
 
 	var y = rootElement.getElementsByTagName('initials');
 	 if(y!== null){
+	 		 this.fr = rootElement.getElementsByTagName('frustum');
+	 	
+		if(this.fr.length !== 0){
+		var fru = this.fr[0];
+		
+		this.nearx = this.reader.getFloat(fru, 'near');
+		this.farx = this.reader.getFloat(fru, 'far');
+		
+		}
+		
 		var z = rootElement.getElementsByTagName('translate');
 		if(z.length !== 0){
 		var translation = z[0];
@@ -120,20 +131,51 @@ MySceneGraph.prototype.parseGlobalsExample= function(rootElement) {
 	{
 		if (luz.length != 0){
 			var luze = rootElement.getElementsByTagName('light');
+			
 			if(luze.length != 0)
 			{
 				var iterator = 0;
-				
+				this.arr = [];
 				for(;iterator<luze.length;iterator++){
+					
 				var a = rootElement.getElementsByTagName('enable');
-				var arr = [];
+				var idz = luze[iterator].id;
 				var ll = a[iterator];
+				var en = this.reader.getInteger(ll,'value');
+				var b = rootElement.getElementsByTagName('position');
+				var poss = b[iterator];
+				var posx = this.reader.getFloat(poss,'x');
+				var posy = this.reader.getFloat(poss,'y');
+				var posz = this.reader.getFloat(poss,'z');
+				var posw = this.reader.getFloat(poss,'w');
+				var c = rootElement.getElementsByTagName('ambient');
+				var am = c[iterator];
+				var amr = this.reader.getFloat(am,'r');
+				var amg = this.reader.getFloat(am,'g');
+				var amb = this.reader.getFloat(am,'b');
+				var ama = this.reader.getFloat(am,'a');
+				var d = rootElement.getElementsByTagName('diffuse');
+				var dif = d[iterator];
+				var difr = this.reader.getFloat(dif,'r');
+				var difg = this.reader.getFloat(dif,'g');
+				var difb = this.reader.getFloat(dif,'b');
+				var difa = this.reader.getFloat(dif,'a');
+				var e = rootElement.getElementsByTagName('specular');
+				var spec = e[iterator];
+				var specr = this.reader.getFloat(spec,'r');
+				var specg = this.reader.getFloat(spec,'g');
+				var specb = this.reader.getFloat(spec,'b');
+				var speca = this.reader.getFloat(spec,'a');
 				
-			//	console.log(this.qq.ed);
+				this.luzinha = new Lights(en,posx,posy,posz,posw,amr,amg,amb,ama,difr,difg,difb,difa,specr,specg,specb,speca,idz);
+				
+
+
 			//	console.log(this.reader.getInteger(ll,'enable'));
 			//	this.light[iterator].enable =  this.reader.getInteger(ll,'enable');
 			//	console.log(this.light[iterator].enable);
-				arr.push();
+				this.arr.push(this.luzinha);
+		
 			}
 			
 			}

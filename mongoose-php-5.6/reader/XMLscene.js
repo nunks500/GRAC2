@@ -19,7 +19,7 @@ XMLscene.prototype.init = function (application) {
     this.gl.enable(this.gl.DEPTH_TEST);
 	this.gl.enable(this.gl.CULL_FACE);
     this.gl.depthFunc(this.gl.LEQUAL);
-		
+	
 	
 	this.obj2 = new MyObject(this);
 };
@@ -27,7 +27,11 @@ XMLscene.prototype.init = function (application) {
 XMLscene.prototype.initLights = function () {
 
     this.shader.bind();
-
+//	this.glLightModelfv(this.GL_LIGHT_MODEL_TWO_SIDE,this.GL_TRUE);
+	this.luce = new CGFlight(this,1);
+	this.luce.setPosition(0,3,3,1);
+	 this.luce.setDiffuse(1.0,1.0,1.0,1.0);
+	this.luce.update();
 	this.lights[0].setPosition(2, 3, 3, 1);
     this.lights[0].setDiffuse(1.0,1.0,1.0,1.0);
     this.lights[0].update();
@@ -36,7 +40,8 @@ XMLscene.prototype.initLights = function () {
 };
 
 XMLscene.prototype.initCameras = function () {
-this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
+		this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
+
 
 };
 
@@ -55,14 +60,34 @@ XMLscene.prototype.setDefaultAppearance = function () {
 // As loading is asynchronous, this may be called already after the application has started the run loop
 XMLscene.prototype.onGraphLoaded = function () 
 {
-	 if(this.graph.q.length !== 0){
+	
+		if(this.graph.fr.length !== 0){
+			this.camera.near = this.graph.nearx;
+			this.camera.far = this.graph.farx;
+		}
+
+ if(this.graph.q.length !== 0){
 	this.axis=new CGFaxis(this,this.graph.len);}
 	else
 	this.axis = new CGFaxis(this);
 	
+	var ite=0;
+/*
+	for(;ite<this.graph.arr.length;ite++){
+		if(this.graph.arr[ite].enable == "1")
+		{
+	this.graph.arr[ite].setPosition(2, 3, 3, 1);
+    this.graph.arr[ite].setDiffuse(1.0,1.0,1.0,1.0);
+    this.graph.arr[ite].update();
+		}
+
+	}
+	*/
 //	this.gl.clearColor(1,0,0,0);
 this.gl.clearColor(this.graph.backr,this.graph.backgg,this.graph.backb,this.graph.backa);
 	this.lights[0].setVisible(true);
+	this.luce.setVisible(true);
+	this.luce.enable();
     this.lights[0].enable();
     	return true;
   
