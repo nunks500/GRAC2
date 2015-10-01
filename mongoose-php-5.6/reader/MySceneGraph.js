@@ -112,8 +112,6 @@ MySceneGraph.prototype.parseGlobalsExample= function(rootElement) {
 		this.backgg = this.reader.getFloat(backg,'g');
 		this.backb = this.reader.getFloat(backg,'b');
 		this.backa = this.reader.getFloat(backg,'a');
-	
-
 	}
 
 	}
@@ -122,6 +120,23 @@ MySceneGraph.prototype.parseGlobalsExample= function(rootElement) {
 	{
 		if (luz.length != 0){
 			var luze = rootElement.getElementsByTagName('light');
+			if(luze.length != 0)
+			{
+				var iterator = 0;
+				
+				for(;iterator<luze.length;iterator++){
+				var a = rootElement.getElementsByTagName('enable');
+				var arr = [];
+				var ll = a[iterator];
+				
+			//	console.log(this.qq.ed);
+			//	console.log(this.reader.getInteger(ll,'enable'));
+			//	this.light[iterator].enable =  this.reader.getInteger(ll,'enable');
+			//	console.log(this.light[iterator].enable);
+				arr.push();
+			}
+			
+			}
 		}
 	}
 

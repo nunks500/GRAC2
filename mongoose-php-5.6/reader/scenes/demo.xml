@@ -13,6 +13,13 @@
 <background r="0" g="0" b="0" a="1"/>
 </illumination>
 <lights>
+<light id="1">                                    <!-- light identifier -->
+        <enable value ="1" />                         <!-- enable/disable -->
+        <position x="0" y="0" z="0" w="0" />       <!-- light position -->
+        <ambient r="0" g="0" b="0" a="0" />        <!-- ambient component -->
+        <diffuse r="0" g="0" b="0" a="0" />        <!-- diffuse component -->
+        <specular r="0" g="0" b="0" a="0" />       <!-- specular component -->
+    </light>
 </lights>
     <globals background="0 0 0 0" drawmode="fill" shading="gouraud" cullface="none" cullorder="CCW" /> 
 	<list>
