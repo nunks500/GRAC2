@@ -32,6 +32,7 @@ XMLscene.prototype.initLights = function () {
 	
 	this.lights[0].setPosition(2, 3, 3, 1);
    this.lights[0].setDiffuse(1.0,1.0,1.0,1.0);
+  
     this.lights[0].update();
  
     this.shader.unbind();
@@ -60,6 +61,7 @@ XMLscene.prototype.onGraphLoaded = function ()
 {
 	this.arr =[];
 		for(var t=0;t<this.graph.arr.length;t++){
+			
 			this.arr[t] = new CGFlight(this,this.graph.arr[t].id);
 			this.arr[t].setPosition(this.graph.arr[t].px, this.graph.arr[t].py, this.graph.arr[t].pz, this.graph.arr[t].pw);
 			this.arr[t].setDiffuse(1.0,1.0,1.0,1.0);
@@ -87,7 +89,7 @@ this.gl.clearColor(this.graph.backr,this.graph.backgg,this.graph.backb,this.grap
 	
 	this.lights[0].setVisible(true);
     this.lights[0].enable();
-     
+    
     	return true;
  
 };

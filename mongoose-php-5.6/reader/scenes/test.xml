@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<SCENE>
+<INITIALS>
+<frustum near="0.1" far="500"/> 
+<translate x="0" y="0" z="0"  />
+<rotation axis="z" angle="0" />
+<rotation axis="x" angle="0" />
+<rotation axis="y" angle="0" />
+<scale sx="1" sy="1" sz="1" /> 
+<reference length="3" /> 
+</INITIALS>
+<ILLUMINATION>
+<ambient r="205" g="0" b="0" a="0" />
+<background r="0" g="0" b="0" a="1"/>
+</ILLUMINATION>
+<LIGHTS>
+<LIGHT id="1">                                    <!-- light identifier -->
+        <enable value ="1" />                         <!-- enable/disable -->
+        <position x="2" y="0" z="0" w="1" />       <!-- light position -->
+        <ambient r="0" g="0" b="0" a="0" />        <!-- ambient component -->
+        <diffuse r="1" g="1" b="1" a="1" />        <!-- diffuse component -->
+        <specular r="0" g="0" b="0" a="0" />       <!-- specular component -->
+    </LIGHT>
+    <LIGHT id="2">                                    <!-- light identifier -->
+        <enable value ="1" />                         <!-- enable/disable -->
+        <position x="2" y="2" z="0" w="0" />       <!-- light position -->
+        <ambient r="0" g="0" b="0" a="0" />        <!-- ambient component -->
+        <diffuse r="0" g="0" b="0" a="0" />        <!-- diffuse component -->
+        <specular r="0" g="0" b="0" a="0" />       <!-- specular component -->
+    </LIGHT>
+</LIGHTS>
+    <TEXTURES>
+    <TEXTURE id="1">
+        <file path="tijolo.png" />                            <!-- path to file -->
+        <amplif_factor s="0.0" t="0.0" />  
+        </TEXTURE>                                       <!-- x/s, y/t -->
+    </TEXTURES >
+    <MATERIALS>
+    <MATERIAL id="1">                                  
+        <shininess value="0.0" />
+        <specular r="0.0" g="0.0" b="0.0" a="0.0" />        <!-- specular reflection -->
+        <diffuse r="0.0" g="0.0" b="0.0" a="0.0" />         <!-- diffuse reflection -->
+        <ambient r="0.0" g="0.0" b="0.0" a="0.0" />         <!-- ambient reflection -->
+        <emission r="0.0" g="0.0" b="0.0" a="0.0" />        <!-- emission component -->
+    </MATERIAL>
+    <LEAVES>
+
+    <!-- next lines define nodes of type leaf; they may be repeated, in any order, as necessary -->
+    <LEAF id="1" type="rectangle" args="2.0 0.0 2.0 2.0" />
+    <LEAF id="1" type="cylinder" args="5.0 2.0 2.0 1 1" /> 
+
+    <!-- Parameters of the above primitives:                                                         -->
+        <!--rectangle: 2D coordinates for left-top and right-bottom vertices.                        -->
+        <!-- cylinder:  height, bottom radius, top radius, sections along height, parts per section  -->
+        <!-- sphere:    radius, parts along radius, parts per section                                -->
+        <!-- triangle:   coordinates of each vertex                                                  -->
+
+</LEAVES>
+         <!-- Continuar a partir de aqui                                                       -->
+</SCENE>
