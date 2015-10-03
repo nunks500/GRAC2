@@ -10,6 +10,7 @@
     this.ab = amb;
     this.aa = ama;
     this.difr = difr;
+    this.difg = difg;
     this.difb = dib;
     this.difa = difa;
     this.specr = specr;

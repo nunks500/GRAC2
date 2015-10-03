@@ -28,12 +28,10 @@ XMLscene.prototype.initLights = function () {
 
     this.shader.bind();
 //	this.glLightModelfv(this.GL_LIGHT_MODEL_TWO_SIDE,this.GL_TRUE);
-	this.luce = new CGFlight(this,1);
-	this.luce.setPosition(0,3,3,1);
-	 this.luce.setDiffuse(1.0,1.0,1.0,1.0);
-	this.luce.update();
+		
+	
 	this.lights[0].setPosition(2, 3, 3, 1);
-    this.lights[0].setDiffuse(1.0,1.0,1.0,1.0);
+   this.lights[0].setDiffuse(1.0,1.0,1.0,1.0);
     this.lights[0].update();
  
     this.shader.unbind();
@@ -60,7 +58,14 @@ XMLscene.prototype.setDefaultAppearance = function () {
 // As loading is asynchronous, this may be called already after the application has started the run loop
 XMLscene.prototype.onGraphLoaded = function () 
 {
-	
+	this.arr =[];
+		for(var t=0;t<this.graph.arr.length;t++){
+			this.arr[t] = new CGFlight(this,this.graph.arr[t].id);
+			this.arr[t].setPosition(this.graph.arr[t].px, this.graph.arr[t].py, this.graph.arr[t].pz, this.graph.arr[t].pw);
+			this.arr[t].setDiffuse(1.0,1.0,1.0,1.0);
+
+		}
+		
 		if(this.graph.fr.length !== 0){
 			this.camera.near = this.graph.nearx;
 			this.camera.far = this.graph.farx;
@@ -71,26 +76,20 @@ XMLscene.prototype.onGraphLoaded = function ()
 	else
 	this.axis = new CGFaxis(this);
 	
-	var ite=0;
-/*
-	for(;ite<this.graph.arr.length;ite++){
-		if(this.graph.arr[ite].enable == "1")
-		{
-	this.graph.arr[ite].setPosition(2, 3, 3, 1);
-    this.graph.arr[ite].setDiffuse(1.0,1.0,1.0,1.0);
-    this.graph.arr[ite].update();
-		}
-
-	}
-	*/
+	
 //	this.gl.clearColor(1,0,0,0);
 this.gl.clearColor(this.graph.backr,this.graph.backgg,this.graph.backb,this.graph.backa);
+	for(var t=0;t<this.graph.arr.length;t++){
+	
+	this.arr[t].setVisible(true);
+	this.arr[t].enable();
+	}
+	
 	this.lights[0].setVisible(true);
-	this.luce.setVisible(true);
-	this.luce.enable();
     this.lights[0].enable();
+     
     	return true;
-  
+ 
 };
 
 XMLscene.prototype.display = function () {
@@ -180,6 +179,11 @@ XMLscene.prototype.display = function () {
 	if (this.graph.loadedOk)
 	{
 		this.lights[0].update();
+		for(var ite=0;ite<this.arr.length;ite++){
+			this.arr[ite].update();
+		}
+	
+	
 	};	
 
     this.shader.unbind();

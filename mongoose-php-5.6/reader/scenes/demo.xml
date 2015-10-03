@@ -16,14 +16,21 @@
 <lights>
 <light id="1">                                    <!-- light identifier -->
         <enable value ="1" />                         <!-- enable/disable -->
-        <position x="0" y="0" z="0" w="0" />       <!-- light position -->
+        <position x="2" y="0" z="0" w="1" />       <!-- light position -->
         <ambient r="0" g="0" b="0" a="0" />        <!-- ambient component -->
-        <diffuse r="0" g="0" b="0" a="0" />        <!-- diffuse component -->
+        <diffuse r="1" g="1" b="1" a="1" />        <!-- diffuse component -->
         <specular r="0" g="0" b="0" a="0" />       <!-- specular component -->
     </light>
     <light id="2">                                    <!-- light identifier -->
         <enable value ="1" />                         <!-- enable/disable -->
-        <position x="0" y="0" z="0" w="0" />       <!-- light position -->
+        <position x="2" y="2" z="0" w="0" />       <!-- light position -->
+        <ambient r="0" g="0" b="0" a="0" />        <!-- ambient component -->
+        <diffuse r="0" g="0" b="0" a="0" />        <!-- diffuse component -->
+        <specular r="0" g="0" b="0" a="0" />       <!-- specular component -->
+    </light>
+     <light id="3">                                    <!-- light identifier -->
+        <enable value ="1" />                         <!-- enable/disable -->
+        <position x="2" y="2" z="2" w="0" />       <!-- light position -->
         <ambient r="0" g="0" b="0" a="0" />        <!-- ambient component -->
         <diffuse r="0" g="0" b="0" a="0" />        <!-- diffuse component -->
         <specular r="0" g="0" b="0" a="0" />       <!-- specular component -->
