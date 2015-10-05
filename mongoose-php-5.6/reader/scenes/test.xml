@@ -46,8 +46,8 @@
     <LEAVES>
 
     <!-- next lines define nodes of type leaf; they may be repeated, in any order, as necessary -->
-    <LEAF id="1" type="rectangle" args="2.0 0.0 2.0 2.0" />
-    <LEAF id="1" type="cylinder" args="5.0 2.0 2.0 1 1" /> 
+    <LEAF id="rect" type="rectangle" args="2.0 0.0 2.0 4.0" />
+    <LEAF id="cil" type="cylinder" args="3.0 2.0 2.0 1 1" /> 
 
     <!-- Parameters of the above primitives:                                                         -->
         <!--rectangle: 2D coordinates for left-top and right-bottom vertices.                        -->
@@ -57,4 +57,86 @@
 
 </LEAVES>
          <!-- Continuar a partir de aqui                                                       -->
+        <NODES>
+        <ROOT id="1"/>
+
+        <NODE id="1">
+            <DESCENDENTS>
+                <DESCENDANT id="2"/>
+                <DESCENDANT id="3"/>
+            </DESCENDENTS>
+        </NODE>
+
+        <NODE id="2">
+             <MATERIAL id="null"/>
+            <TEXTURE id="null"/>
+            <TRANSLATION x="0" y="0" z="3"/>
+            <DESCENDENTS>
+                <DESCENDANT id="rect"/>
+            </DESCENDENTS>
+        </NODE>
+
+        <NODE id="3">
+            <MATERIAL id="null"/>
+            <TEXTURE id="null"/>
+             <TRANSLATION x="0" y="0" z="3"/>
+            <DESCENDENTS>
+                <DESCENDANT id="4"/>
+                <DESCENDANT id="5"/>
+                <DESCENDANT id="6"/>
+                <DESCENDANT id="7"/>
+            </DESCENDENTS>
+        </NODE>
+
+        <NODE id="4">
+            <MATERIAL id="null"/>
+           <TEXTURE id="null"/>
+            <DESCENDENTS>
+                <DESCENDANT id="cil"/>
+            </DESCENDENTS>
+        </NODE>
+
+        <NODE id="5">
+             <MATERIAL id="null"/>
+            <TEXTURE id="null"/>
+            <TRANSLATION x="2" y="0" z="0"/>
+            <DESCENDENTS>
+                <DESCENDANT id="cil"/>
+            </DESCENDENTS>
+        </NODE>
+
+        <NODE id="6">
+             <MATERIAL id="null"/>
+           <TEXTURE id="null"/>
+            <TRANSLATION x="0" y="4" z="0"/>
+            <DESCENDENTS>
+                <DESCENDANT id="cil"/>
+            </DESCENDENTS>
+        </NODE>
+
+        <NODE id="7">
+             <MATERIAL id="null"/>
+           <TEXTURE id="null"/>
+            <TRANSLATION x="2" y="4" z="0"/>
+            <DESCENDENTS>
+                <DESCENDANT id="cil"/>
+            </DESCENDENTS>
+        </NODE>
+        <NODE id="8">
+             <MATERIAL id="null"/>
+           <TEXTURE id="null"/>
+            <TRANSLATION x="0" y="0" z="3"/>
+            <DESCENDENTS>
+                <DESCENDANT id="cil"/>
+            </DESCENDENTS>
+        </NODE>
+        <NODE id="9">
+             <MATERIAL id="null"/>
+           <TEXTURE id="null"/>
+            <TRANSLATION x="0" y="4" z="3"/>
+            <DESCENDENTS>
+                <DESCENDANT id="cil"/>
+            </DESCENDENTS>
+        </NODE>
+    </NODES>
 </SCENE>

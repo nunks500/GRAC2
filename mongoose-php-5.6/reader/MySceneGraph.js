@@ -200,7 +200,7 @@ MySceneGraph.prototype.parseGlobalsExample= function(rootElement) {
 	this.cullorder = this.reader.getItem(globals, 'cullorder', ["ccw","cw"]);
 
 	console.log("Globals read from file: {background=" + this.background + ", drawmode=" + this.drawmode + ", cullface=" + this.cullface + ", cullorder=" + this.cullorder + "}");
-
+/*
 	var tempList=rootElement.getElementsByTagName('list');
 
 	if (tempList == null  || tempList.length==0) {
@@ -218,6 +218,7 @@ MySceneGraph.prototype.parseGlobalsExample= function(rootElement) {
 		this.list[e.id]=e.attributes.getNamedItem("coords").value;
 		console.log("Read list item id "+ e.id+" with value "+this.list[e.id]);
 	};
+	*/	
 
 };
 	
