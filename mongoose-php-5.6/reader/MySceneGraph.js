@@ -181,7 +181,19 @@ MySceneGraph.prototype.parseGlobalsExample= function(rootElement) {
 			}
 		}
 	}
+	var nodes = rootElement.getElementsByTagName('nodes');
+	if (nodes.length != 0){
+		var root = rootElement.getElementsByTagName('ROOT');
+		if (root == null  || root.length==0) {
+		return "root element is missing.";
+	}
+		else{
+			var ite = root[0];
+			console.log(this.reader.getInteger(ite,'id'));
+		}
+	
 
+	}
 	
 	var elems =  rootElement.getElementsByTagName('globals');
 	if (elems == null) {

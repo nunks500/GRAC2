@@ -36,8 +36,9 @@
         <specular r="0" g="0" b="0" a="0" />       <!-- specular component -->
     </light>
 </lights>
-<leaves>
-</leaves>
+<nodes>
+<ROOT id="1" />
+</nodes>
     <globals background="0 0 0 0" drawmode="fill" shading="gouraud" cullface="none" cullorder="CCW" /> 
 	
 </scene>
