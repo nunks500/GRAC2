@@ -2,19 +2,19 @@
  * MyCilinder
  * @constructor
  */
- function MyCilinder(scene, slices, stacks, lado) {
+ function MyCilinder(scene,raio,slices, stacks, lado) {
  	CGFobject.call(this,scene);
 
 	this.slices=slices;
 	this.stacks=stacks;
 
- 	this.initBuffers(lado);
+ 	this.initBuffers(lado,raio);
  };
  
  MyCilinder.prototype = Object.create(CGFobject.prototype);
  MyCilinder.prototype.constructor = MyCilinder;
 
- MyCilinder.prototype.initBuffers = function(lado) {
+ MyCilinder.prototype.initBuffers = function(lado,raio) {
 
 	this.indices = [
  	];
@@ -30,8 +30,8 @@
 	{
 		for (var slice = 0; slice < this.slices; slice++)
 		{
-			this.vertices.push(Math.cos(slice * angle) * Math.cos(stack * angle_height), Math.sin(slice * angle) * Math.cos(stack * angle_height) * lado, Math.sin(stack * angle_height) * lado);
-			this.normals.push(Math.cos(slice * angle) * Math.cos(stack * angle_height), Math.sin(slice * angle) * Math.cos(stack * angle_height)*lado, Math.sin(stack * angle_height) *lado);
+			this.vertices.push(Math.cos(slice * angle) * Math.cos(stack * angle_height)*raio, Math.sin(slice * angle) * Math.cos(stack * angle_height) * lado *raio, Math.sin(stack * angle_height) * lado*raio);
+			this.normals.push(Math.cos(slice * angle) * Math.cos(stack * angle_height) *raio, Math.sin(slice * angle) * Math.cos(stack * angle_height)*lado *raio, Math.sin(stack * angle_height) *lado*raio);
 		}
 	}
 

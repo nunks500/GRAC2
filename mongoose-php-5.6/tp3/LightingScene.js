@@ -24,7 +24,7 @@ LightingScene.prototype.init = function(application) {
 
 	// Scene elements
 	this.prism = new MyPrism(this, 20, 1);
-	this.cylinder = new MyCilinder(this, 8, 20);
+	this.sphere = new MySphere(this, 8, 20);
 
 
 	// Materials
@@ -43,6 +43,11 @@ LightingScene.prototype.initLights = function() {
 	// Positions for lights
 	this.lights[0].setPosition(5, 5, 5, 1);
 	this.lights[0].setVisible(true);
+	this.lights[2].setPosition(2, 2, 22, 1);
+	this.lights[2].setVisible(true);
+	this.lights[2].setAmbient(0.8, 0.8, 0.8, 1);
+	
+	this.lights[2].enable();
 	
 	this.lights[1].setPosition(-5, 5, 5, 1);
 	this.lights[1].setVisible(true);
@@ -98,8 +103,10 @@ LightingScene.prototype.display = function() {
 	//this.prism.display();
 	
 	
-	this.cylinder.display();
-	this.prism.display();
+//	this.cylinder.display();
+	this.sphere.display();
+	//this.sphere.cil2.display();
+	//this.prism.display();
 
 	
 	

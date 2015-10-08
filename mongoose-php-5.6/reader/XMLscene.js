@@ -104,8 +104,23 @@ this.gl.clearColor(this.graph.backr,this.graph.backgg,this.graph.backb,this.grap
 		var vecr = args.split(" ");
 		var cilindro = new MyPrism(this,vecr[4],vecr[5],vecr[0],vecr[1],vecr[2]);
 		console.log(vecr[4]);
-		objects.push(cilindro);
+	//	objects.push(cilindro);
 
+	}
+	else if(this.graph.folhas[iterator].type == 'sphere'){
+		var args = this.graph.folhas[iterator].args;
+		var vecr = args.split(" ");
+		var esfera = new MySphere(this,vecr[0],vecr[1],vecr[2]);
+		
+		objects.push(esfera);
+
+	}
+	else if(this.graph.folhas[iterator].type == 'triangle'){
+		var args = this.graph.folhas[iterator].args;
+		var vecr = args.split(" ");
+		var triangulo = new MyTriangle(this,vecr[0],vecr[1],vecr[2],vecr[3],vecr[4],vecr[5],vecr[6],vecr[7],vecr[8]);
+		
+		objects.push(triangulo);
 
 	}
 		

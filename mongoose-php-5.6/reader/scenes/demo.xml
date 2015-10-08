@@ -39,6 +39,8 @@
 <leaves>
    <LEAF id="rekt" type="rectangle" args="0.0 1.0 2.0 0.0" />
     <LEAF id="cil" type="cylinder" args="2.0 1.0 2.5 4.0 8 2" />
+     <LEAF id="esfera" type="sphere" args="1.0 20 10" />
+      <LEAF id="tri" type="triangle" args="0.0 0.0 0.0 3.0 0.0 0.0 0.0 3.0 0.0" />
 </leaves>
 <nodes>
 <ROOT id="1" />
