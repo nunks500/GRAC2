@@ -36,8 +36,17 @@
         <specular r="0" g="0" b="0" a="0" />       <!-- specular component -->
     </light>
 </lights>
+<TEXTURES>
+    <TEXTURE id="chao">
+        <file path="floor.png" />                             <!-- path to file -->
+        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
+    </TEXTURE>
+
+    <!-- NOTE: this block "TEXTURE" must be repeated as necessary with different "id" -->
+    
+</TEXTURES>
 <leaves>
-   <LEAF id="rekt" type="rectangle" args="0.0 1.0 2.0 0.0" />
+   <LEAF id="rekt" type="rectangle" args="0.0 10.0 20.0 0.0" />
     <LEAF id="cil" type="cylinder" args="2.0 1.0 2.5 4.0 8 2" />
      <LEAF id="esfera" type="sphere" args="1.0 20 10" />
       <LEAF id="tri" type="triangle" args="0.0 0.0 0.0 3.0 0.0 0.0 0.0 3.0 0.0" />

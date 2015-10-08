@@ -8,10 +8,14 @@ function MyObject(scene) {
 
 	this.initBuffers();
 };
-function MyObject(scene,tx,ty,bx,by) {
+function MyObject(scene,tx,ty,bx,by, minS, maxS, minT, maxT) {
 	CGFobject.call(this,scene);
-
+	   this.minS = minS;
+    this.maxS = maxS;
+    this.minT = minT;
+    this.maxT = maxT;
 	this.initBufferz(tx,ty,bx,by);
+	
 //this.initBuffers();
 };
 
@@ -50,6 +54,13 @@ MyObject.prototype.initBufferz = function (tx,ty,bx,by) {
 			1, 2, 3,
            2,1,0
         ];
+
+        this.texCoords = [
+ 	 this.minS, this.maxT,
+ 	 this.maxS, this.maxT,
+ 	 this.minS, this.minT,
+ 	 this.maxS, this.minT
+ 	  ];
 		
 	this.primitiveType=this.scene.gl.TRIANGLES;
 	this.initGLBuffers();

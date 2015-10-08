@@ -6,6 +6,7 @@ function XMLscene() {
 XMLscene.prototype = Object.create(CGFscene.prototype);
 XMLscene.prototype.constructor = XMLscene;
   var objects = [];
+  var text =[];
 
 XMLscene.prototype.init = function (application) {
     CGFscene.prototype.init.call(this, application);
@@ -20,6 +21,7 @@ XMLscene.prototype.init = function (application) {
     this.gl.enable(this.gl.DEPTH_TEST);
 	this.gl.enable(this.gl.CULL_FACE);
     this.gl.depthFunc(this.gl.LEQUAL);
+    this.enableTextures(true);
 	
 };
 
@@ -96,8 +98,9 @@ this.gl.clearColor(this.graph.backr,this.graph.backgg,this.graph.backb,this.grap
 		var args = this.graph.folhas[iterator].args;
 		var vecr = args.split(" ");
 		
-		var rectangulo = new MyObject(this,vecr[0],vecr[1],vecr[2],vecr[3]);
+		var rectangulo = new MyObject(this,vecr[0],vecr[1],vecr[2],vecr[3],0, 20, 0, 20);
 		objects.push(rectangulo);
+
 	}
 	else if(this.graph.folhas[iterator].type == 'cylinder'){
 		var args = this.graph.folhas[iterator].args;
@@ -112,7 +115,7 @@ this.gl.clearColor(this.graph.backr,this.graph.backgg,this.graph.backb,this.grap
 		var vecr = args.split(" ");
 		var esfera = new MySphere(this,vecr[0],vecr[1],vecr[2]);
 		
-		objects.push(esfera);
+	//	objects.push(esfera);
 
 	}
 	else if(this.graph.folhas[iterator].type == 'triangle'){
@@ -120,15 +123,22 @@ this.gl.clearColor(this.graph.backr,this.graph.backgg,this.graph.backb,this.grap
 		var vecr = args.split(" ");
 		var triangulo = new MyTriangle(this,vecr[0],vecr[1],vecr[2],vecr[3],vecr[4],vecr[5],vecr[6],vecr[7],vecr[8]);
 		
-		objects.push(triangulo);
+//		objects.push(triangulo);
 
 	}
 		
-
-   }
+	
+	}
+   for(var we = 0;we<this.graph.texturaz.length;we++){
+			
+		text[we] = new CGFappearance(this);
+		text[we].loadTexture(this.graph.texturaz[we].path);
+		text[we].setTextureWrap('REPEAT', 'REPEAT');
+		
+		
    
-    	return true;
- 
+    
+   }
 };
 
 XMLscene.prototype.display = function () {
@@ -223,7 +233,13 @@ XMLscene.prototype.display = function () {
 		}
 
 		for(var t =0;t<objects.length;t++){
+			
+			text[t].apply();
+			
 			objects[t].display();
+			
+		//	console.log(text[t]);
+			
 		}
 	
 	
