@@ -181,6 +181,26 @@ MySceneGraph.prototype.parseGlobalsExample= function(rootElement) {
 			}
 		}
 	}
+	var leaves = rootElement.getElementsByTagName('leaves');
+	if(leaves.length != 0){
+		this.folhas=[];
+	var leaf = rootElement.getElementsByTagName('LEAF');
+		var i = 0;
+
+		if(leaf.length != 0){
+
+		for(;i<leaf.length;i++){
+
+		leafi = leaf[i];
+		var leafid = this.reader.getString(leafi,'id');
+		var leaftype = this.reader.getString(leafi,'type');
+		var coors = this.reader.getString(leafi, 'args');
+		this.leafs = new Leaves(leafid,leaftype,coors);
+		this.folhas.push(this.leafs);
+		}
+		}
+		
+	}
 	var nodes = rootElement.getElementsByTagName('nodes');
 	if (nodes.length != 0){
 		var root = rootElement.getElementsByTagName('ROOT');

@@ -2,7 +2,8 @@
  * MyPrism
  * @constructor
  */
- function MyCilinder(scene, slices, stacks) {
+ 
+  function MyCilinder(scene, slices, stacks) {
  	CGFobject.call(this,scene);
 	
 	this.slices=slices;

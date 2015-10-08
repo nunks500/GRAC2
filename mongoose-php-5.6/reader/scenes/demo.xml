@@ -36,8 +36,19 @@
         <specular r="0" g="0" b="0" a="0" />       <!-- specular component -->
     </light>
 </lights>
+<leaves>
+   <LEAF id="rekt" type="rectangle" args="0.0 1.0 2.0 0.0" />
+    <LEAF id="cil" type="cylinder" args="2.0 1.0 2.5 4.0 8 2" />
+</leaves>
 <nodes>
 <ROOT id="1" />
+<NODE id="1">
+  <DESCENDANTS>
+            <DESCENDANT id="rekt" />       <!-- "ss" is the identifier of a node or of leaf; -->                                         <!-- may be repeatad as necessary. It can refer an -->
+                                         <!-- identifier of another node or leaf, later defined in the lsx file. -->
+        </DESCENDANTS>
+
+</NODE>
 </nodes>
     <globals background="0 0 0 0" drawmode="fill" shading="gouraud" cullface="none" cullorder="CCW" /> 
 	

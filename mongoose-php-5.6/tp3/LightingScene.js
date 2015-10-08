@@ -23,7 +23,7 @@ LightingScene.prototype.init = function(application) {
 	this.axis = new CGFaxis(this);
 
 	// Scene elements
-	this.prism = new MyPrism(this, 8, 1);
+	this.prism = new MyPrism(this, 20, 1);
 	this.cylinder = new MyCilinder(this, 8, 20);
 
 
@@ -99,7 +99,7 @@ LightingScene.prototype.display = function() {
 	
 	
 	this.cylinder.display();
-
+	this.prism.display();
 
 	
 	

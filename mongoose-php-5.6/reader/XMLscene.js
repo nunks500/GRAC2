@@ -5,6 +5,7 @@ function XMLscene() {
 
 XMLscene.prototype = Object.create(CGFscene.prototype);
 XMLscene.prototype.constructor = XMLscene;
+  var objects = [];
 
 XMLscene.prototype.init = function (application) {
     CGFscene.prototype.init.call(this, application);
@@ -20,8 +21,6 @@ XMLscene.prototype.init = function (application) {
 	this.gl.enable(this.gl.CULL_FACE);
     this.gl.depthFunc(this.gl.LEQUAL);
 	
-	
-	this.obj2 = new MyObject(this);
 };
 
 XMLscene.prototype.initLights = function () {
@@ -89,7 +88,30 @@ this.gl.clearColor(this.graph.backr,this.graph.backgg,this.graph.backb,this.grap
 	
 	this.lights[0].setVisible(true);
     this.lights[0].enable();
-    
+   var iterator= 0;
+  
+   for(;iterator<this.graph.folhas.length;iterator++){
+	if(this.graph.folhas[iterator].type == 'rectangle')
+	{
+		var args = this.graph.folhas[iterator].args;
+		var vecr = args.split(" ");
+		
+		var rectangulo = new MyObject(this,vecr[0],vecr[1],vecr[2],vecr[3]);
+		objects.push(rectangulo);
+	}
+	else if(this.graph.folhas[iterator].type == 'cylinder'){
+		var args = this.graph.folhas[iterator].args;
+		var vecr = args.split(" ");
+		var cilindro = new MyPrism(this,vecr[4],vecr[5],vecr[0],vecr[1],vecr[2]);
+		console.log(vecr[4]);
+		objects.push(cilindro);
+
+
+	}
+		
+
+   }
+   
     	return true;
  
 };
@@ -177,12 +199,16 @@ XMLscene.prototype.display = function () {
 	 if(typeof this.graph.rotzangle !== "undefined"){
 	this.multMatrix(rotz);
 	 }
-	this.obj2.display();
+
 	if (this.graph.loadedOk)
 	{
 		this.lights[0].update();
 		for(var ite=0;ite<this.arr.length;ite++){
 			this.arr[ite].update();
+		}
+
+		for(var t =0;t<objects.length;t++){
+			objects[t].display();
 		}
 	
 	
