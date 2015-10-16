@@ -8,7 +8,7 @@ function MySceneGraph(filename, scene) {
 		
 	// File reading 
 	this.reader = new CGFXMLreader();
-	this.reader2 = new CGFXMLreader();
+
 	/*
 	 * Read the contents of the xml file, and refer to this class for loading and error handlers.
 	 * After the file is read, the reader calls onXMLReady on this object.
@@ -49,7 +49,7 @@ MySceneGraph.prototype.onXMLReady=function()
  */
 MySceneGraph.prototype.parseGlobalsExample= function(rootElement) {
 		var x = rootElement.nodeName;
-		
+
 	if (x !== "scene" || x == null  || x.length==0) {
 		return "scene element is missing.";
 	}
@@ -225,19 +225,68 @@ MySceneGraph.prototype.parseGlobalsExample= function(rootElement) {
 		}
 		
 	}
+
 	var nodes = rootElement.getElementsByTagName('nodes');
 	if (nodes.length != 0){
 		var root = rootElement.getElementsByTagName('ROOT');
+		this.rootid = this.reader.getString(root[0], 'id');
 		if (root == null  || root.length==0) {
 		return "root element is missing.";
-	}
-		else{
-			var ite = root[0];
-			console.log(this.reader.getInteger(ite,'id'));
+	} 
+	var nodex = rootElement.getElementsByTagName('NODE');
+	for(var l=0;l<nodex.length;l++){
+		this.currentnodeid = this.reader.getInteger(nodex[l], 'id');
+		 var node1 = new Node(nodex[l].getAttribute('id'));
+        node1.material = this.reader.getString(nodex[l].getElementsByTagName('MATERIAL')[0], 'id');
+        node1.texture = this.reader.getString(nodex[l].getElementsByTagName('TEXTURE')[0], 'id');
+        console.log(nodex[l]);
+		var translat = nodex[l].getElementsByTagName('TRANSLATION');
+		for(var dd = 0;dd<translat.length;dd++){
+		 			var trans = [];
+                    trans.push(this.reader.getFloat(translat[dd], "x"));
+                    trans.push(this.reader.getFloat(translat[dd], "y"));
+                    trans.push(this.reader.getFloat(translat[dd], "z"));
+                     console.log("trans: " + trans);
+                    mat4.translate(node1.matrix, node1.matrix, trans);
+			
+		}
+
+		var scali = nodex[l].getElementsByTagName('SCALE');
+		if(scali.length != 0){
+		for(var ss = 0;ss<translat.length;ss++){
+		 			 var scale = [];
+                    scale.push(this.reader.getFloat(scali[ss], "sx"));
+                    scale.push(this.reader.getFloat(scali[ss], "sy"));
+                    scale.push(this.reader.getFloat(scali[ss], "sz"));
+                    // console.log("scale: " + scale);
+                    mat4.scale(node1.matrix, node1.matrix, scale);
+			
+		}
+		}
+		var rot = nodex[l].getElementsByTagName('ROTATION');
+		console.log(rot);
+		var deg2rad = Math.PI / 180;
+		if(rot.length != 0){
+		for(var xs = 0;xs<rot.length;xs++){
+		 			var axis = this.reader.getItem(rot[xs], "axis", ["x", "y", "z"]);
+                    var angle = this.reader.getFloat(rot[xs], "angle") * deg2rad;
+                    var rot2 = [0, 0, 0];
+
+                     console.log("rot: " + axis + " " + angle + " ");
+                    rot2[["x", "y", "z"].indexOf(axis)] = 1;
+                    mat4.rotate(node1.matrix, node1.matrix, angle, rot2);
+			
+		}
+
+			
 		}
 	
 
+	}	
+
+
 	}
+	
 	
 	var elems =  rootElement.getElementsByTagName('globals');
 	if (elems == null) {

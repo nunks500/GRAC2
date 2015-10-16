@@ -54,10 +54,34 @@
 <nodes>
 <ROOT id="1" />
 <NODE id="1">
-  <DESCENDANTS>
-            <DESCENDANT id="rekt" />       <!-- "ss" is the identifier of a node or of leaf; -->                                         <!-- may be repeatad as necessary. It can refer an -->
+ <MATERIAL id="2"/>
+ <TEXTURE id="5"/>
+ <TRANSLATION x="2" y="0" z="0" />
+  <ROTATION axis="x" angle="90" />
+  <DESCENDENTS>
+            <DESCENDENT id="3" />
+            <DESCENDENT id="2" />
+            <DESCENDENT id="rekt" />       <!-- "ss" is the identifier of a node or of leaf; -->                                         <!-- may be repeatad as necessary. It can refer an -->
                                          <!-- identifier of another node or leaf, later defined in the lsx file. -->
-        </DESCENDANTS>
+ </DESCENDENTS>
+
+</NODE>
+<NODE id="3">
+ <MATERIAL id="2"/>
+ <TEXTURE id="5"/>
+  <DESCENDENTS>
+            <DESCENDENT id="4" />       <!-- "ss" is the identifier of a node or of leaf; -->                                         <!-- may be repeatad as necessary. It can refer an -->
+                                         <!-- identifier of another node or leaf, later defined in the lsx file. -->
+ </DESCENDENTS>
+
+</NODE>
+<NODE id="2">
+ <MATERIAL id="1"/>
+ <TEXTURE id="5"/>
+  <DESCENDENTS>
+            <DESCENDENT id="6" />       <!-- "ss" is the identifier of a node or of leaf; -->                                         <!-- may be repeatad as necessary. It can refer an -->
+                                         <!-- identifier of another node or leaf, later defined in the lsx file. -->
+ </DESCENDENTS>
 
 </NODE>
 </nodes>

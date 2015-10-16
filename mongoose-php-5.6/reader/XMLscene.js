@@ -123,7 +123,7 @@ this.gl.clearColor(this.graph.backr,this.graph.backgg,this.graph.backb,this.grap
 		var vecr = args.split(" ");
 		var triangulo = new MyTriangle(this,vecr[0],vecr[1],vecr[2],vecr[3],vecr[4],vecr[5],vecr[6],vecr[7],vecr[8]);
 		
-//		objects.push(triangulo);
+	//	objects.push(triangulo);
 
 	}
 		
@@ -133,7 +133,7 @@ this.gl.clearColor(this.graph.backr,this.graph.backgg,this.graph.backb,this.grap
 			
 		text[we] = new CGFappearance(this);
 		text[we].loadTexture(this.graph.texturaz[we].path);
-		text[we].setTextureWrap('REPEAT', 'REPEAT');
+		text[we].setTextureWrap('CLAMP_TO_EDGE,CLAMP_TO_EDGE');
 		
 		
    

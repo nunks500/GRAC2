@@ -30,11 +30,10 @@
     </LIGHT>
 </LIGHTS>
     <TEXTURES>
-    <TEXTURE id="1">
-        <file path="tijolo.png" />                            <!-- path to file -->
-        <amplif_factor s="0.0" t="0.0" />  
-        </TEXTURE>                                       <!-- x/s, y/t -->
-    </TEXTURES >
+    <TEXTURE id="chao">
+        <file path="floor.png" />                             <!-- path to file -->
+        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
+    </TEXTURE>
     <MATERIALS>
     <MATERIAL id="1">                                  
         <shininess value="0.0" />
@@ -48,6 +47,7 @@
     <!-- next lines define nodes of type leaf; they may be repeated, in any order, as necessary -->
     <LEAF id="rect" type="rectangle" args="2.0 0.0 2.0 4.0" />
     <LEAF id="cil" type="cylinder" args="3.0 2.0 2.0 1 1" /> 
+    <LEAF id="esfera" type="sphere" args="1.0 20 10" />
 
     <!-- Parameters of the above primitives:                                                         -->
         <!--rectangle: 2D coordinates for left-top and right-bottom vertices.                        -->
@@ -64,13 +64,17 @@
             <DESCENDENTS>
                 <DESCENDANT id="2"/>
                 <DESCENDANT id="3"/>
+                <DESCENDANT id="10"/>
+                 <DESCENDANT id="13"/>
+                  <DESCENDANT id="14"/>
             </DESCENDENTS>
         </NODE>
 
         <NODE id="2">
              <MATERIAL id="null"/>
             <TEXTURE id="null"/>
-            <TRANSLATION x="0" y="0" z="3"/>
+            <TRANSLATION x="2" y="2" z="3"/>
+            <ROTATION axis="x" angle="90"/>
             <DESCENDENTS>
                 <DESCENDANT id="rect"/>
             </DESCENDENTS>
@@ -79,12 +83,14 @@
         <NODE id="3">
             <MATERIAL id="null"/>
             <TEXTURE id="null"/>
-             <TRANSLATION x="0" y="0" z="3"/>
+             <TRANSLATION x="2" y="2" z="0"/>
             <DESCENDENTS>
                 <DESCENDANT id="4"/>
                 <DESCENDANT id="5"/>
                 <DESCENDANT id="6"/>
                 <DESCENDANT id="7"/>
+                <DESCENDANT id="8"/>
+                <DESCENDANT id="9"/>
             </DESCENDENTS>
         </NODE>
 
@@ -136,6 +142,45 @@
             <TRANSLATION x="0" y="4" z="3"/>
             <DESCENDENTS>
                 <DESCENDANT id="cil"/>
+            </DESCENDENTS>
+        </NODE>
+        <NODE id="10">
+             <MATERIAL id="null"/>
+           <TEXTURE id="null"/>
+            <TRANSLATION x="3" y="3" z="0"/>
+            <DESCENDENTS>
+                <DESCENDANT id="11"/>
+            </DESCENDENTS>
+        </NODE>
+        <NODE id="11">
+             <MATERIAL id="null"/>
+           <TEXTURE id="null"/>
+            <DESCENDENTS>
+                <DESCENDANT id="cil"/>
+            </DESCENDENTS>
+        </NODE>
+        </NODE>
+        <NODE id="12">
+             <MATERIAL id="null"/>
+           <TEXTURE id="null"/>
+           <TRANSLATION x="0" y="0" z="3"/>
+            <DESCENDENTS>
+                <DESCENDANT id="sphere"/>
+            </DESCENDENTS>
+        </NODE>
+         <NODE id="13">
+             <MATERIAL id="1"/>
+           <TEXTURE id="chao"/>
+            <DESCENDENTS>
+                <DESCENDANT id="rect"/>
+            </DESCENDENTS>
+        </NODE>
+        <NODE id="14">
+             <MATERIAL id="1"/>
+           <TEXTURE id="chao"/>
+            <ROTATION axis="z" angle="90"/>
+            <DESCENDENTS>
+                <DESCENDANT id="rect"/>
             </DESCENDENTS>
         </NODE>
     </NODES>
