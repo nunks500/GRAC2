@@ -41,6 +41,10 @@
         <file path="floor.png" />                             <!-- path to file -->
         <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
     </TEXTURE>
+    <TEXTURE id="pilas">
+        <file path="pilas.png" />                             <!-- path to file -->
+        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
+    </TEXTURE>
 
     <!-- NOTE: this block "TEXTURE" must be repeated as necessary with different "id" -->
     

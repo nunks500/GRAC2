@@ -185,7 +185,7 @@ MySceneGraph.prototype.parseGlobalsExample= function(rootElement) {
 	var text = rootElement.getElementsByTagName('TEXTURES');
 	if(text.length != 0){
 		this.texturaz = [];
-			var texturas = rootElement.getElementsByTagName('TEXTURE');
+			var texturas = text[0].getElementsByTagName('TEXTURE');
 				if(texturas.length != 0){
 			for(var u=0;u <texturas.length; u++){
 				var texturi = texturas[u];
@@ -197,13 +197,12 @@ MySceneGraph.prototype.parseGlobalsExample= function(rootElement) {
 					var amptextt = this.reader.getFloat(b[0],'t');
 					var text1 = new Texture(textid,textpath,amptexts,amptextt);
 					this.texturaz.push(text1);
-
+					
 
 			}
 					
 				}
 			}
-
 	
 	var leaves = rootElement.getElementsByTagName('leaves');
 	if(leaves.length != 0){
@@ -225,7 +224,7 @@ MySceneGraph.prototype.parseGlobalsExample= function(rootElement) {
 		}
 		
 	}
-
+	this.nodes = [];
 	var nodes = rootElement.getElementsByTagName('nodes');
 	if (nodes.length != 0){
 		var root = rootElement.getElementsByTagName('ROOT');
@@ -239,7 +238,7 @@ MySceneGraph.prototype.parseGlobalsExample= function(rootElement) {
 		 var node1 = new Node(nodex[l].getAttribute('id'));
         node1.material = this.reader.getString(nodex[l].getElementsByTagName('MATERIAL')[0], 'id');
         node1.texture = this.reader.getString(nodex[l].getElementsByTagName('TEXTURE')[0], 'id');
-        console.log(nodex[l]);
+      
 		var translat = nodex[l].getElementsByTagName('TRANSLATION');
 		for(var dd = 0;dd<translat.length;dd++){
 		 			var trans = [];
@@ -264,7 +263,7 @@ MySceneGraph.prototype.parseGlobalsExample= function(rootElement) {
 		}
 		}
 		var rot = nodex[l].getElementsByTagName('ROTATION');
-		console.log(rot);
+		
 		var deg2rad = Math.PI / 180;
 		if(rot.length != 0){
 		for(var xs = 0;xs<rot.length;xs++){
@@ -277,13 +276,24 @@ MySceneGraph.prototype.parseGlobalsExample= function(rootElement) {
                     mat4.rotate(node1.matrix, node1.matrix, angle, rot2);
 			
 		}
+		}
 
+		var desc = nodex[l].getElementsByTagName('DESCENDENTS');
+		if(desc.length != 0){
+		var desce = desc[0].getElementsByTagName('DESCENDENT');
+		if(desce.length != 0){
+			for(var t=0;t<desce.length;t++){
+				node1.descendents.push(desce[t].getAttribute('id'));
+
+			}
 			
 		}
+		}
+		this.nodes.push(node1);
 	
 
 	}	
-
+	
 
 	}
 	
