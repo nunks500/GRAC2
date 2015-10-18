@@ -181,7 +181,44 @@ MySceneGraph.prototype.parseGlobalsExample= function(rootElement) {
 			}
 		}
 	}
+	var mate = rootElement.getElementsByTagName('MATERIALS');
+	if(mate.length != 0){
+		this.matq =[];
+		var materials = mate[0].getElementsByTagName('MATERIAL');
+		if(materials.length != 0){
+		for(var c = 0;c<materials.length;c++){
+			var materiales = materials[c];
+			var materialid = this.reader.getString(materiales,'id');
+			var a = materials[c].getElementsByTagName('shininess');
+			var shinis = this.reader.getFloat(a[0],'value');
+			var b = materials[c].getElementsByTagName('specular');
+			var especularr =  this.reader.getFloat(b[0],'r');
+			var especularg =  this.reader.getFloat(b[0],'g');
+			var especularb =  this.reader.getFloat(b[0],'b');
+			var especulara =  this.reader.getFloat(b[0],'a');
+			var d = materials[c].getElementsByTagName('diffuse');
+			var diffuser =  this.reader.getFloat(d[0],'r');
+			var diffuseg =  this.reader.getFloat(d[0],'g');
+			var diffuseb =  this.reader.getFloat(d[0],'b');
+			var diffusea =  this.reader.getFloat(d[0],'a');
+			var e = materials[c].getElementsByTagName('ambient');
+			var ambientr =  this.reader.getFloat(e[0],'r');
+			var ambientg =  this.reader.getFloat(e[0],'g');
+			var ambientb =  this.reader.getFloat(e[0],'b');
+			var ambienta =  this.reader.getFloat(e[0],'a');
+			var f = materials[c].getElementsByTagName('emission');
+			var emissionr =  this.reader.getFloat(f[0],'r');
+			var emissiong =  this.reader.getFloat(f[0],'g');
+			var emissionb =  this.reader.getFloat(f[0],'b');
+			var emissiona =  this.reader.getFloat(f[0],'a');
+			var material1 = new Material(shinis,materialid,especularr,especularg,especularb,especulara,diffuser,diffuseg,diffuseb,diffusea,ambientr,ambientg,ambientb,ambienta,emissionr,emissiong,emissionb,emissiona);
+			this.matq.push(material1);
+		}
 
+		}
+
+	}
+	
 	var text = rootElement.getElementsByTagName('TEXTURES');
 	if(text.length != 0){
 		this.texturaz = [];
@@ -297,8 +334,8 @@ MySceneGraph.prototype.parseGlobalsExample= function(rootElement) {
 
 	}
 	
-	
 	var elems =  rootElement.getElementsByTagName('globals');
+	
 	if (elems == null) {
 		return "globals element is missing.";
 	}

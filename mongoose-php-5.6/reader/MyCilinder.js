@@ -32,6 +32,7 @@
 		{
 			this.vertices.push(Math.cos(slice * angle) * Math.cos(stack * angle_height)*raio, Math.sin(slice * angle) * Math.cos(stack * angle_height) * lado *raio, Math.sin(stack * angle_height) * lado*raio);
 			this.normals.push(Math.cos(slice * angle) * Math.cos(stack * angle_height) *raio, Math.sin(slice * angle) * Math.cos(stack * angle_height)*lado *raio, Math.sin(stack * angle_height) *lado*raio);
+			
 		}
 	}
 

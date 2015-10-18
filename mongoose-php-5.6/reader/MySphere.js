@@ -2,6 +2,7 @@
  * MySphere
  * @constructor
  */
+ 
  function MySphere(scene,raio, slices, stacks) {
  	CGFobject.call(this,scene);
 
