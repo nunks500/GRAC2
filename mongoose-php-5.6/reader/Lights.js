@@ -19,7 +19,6 @@
     this.speca = speca;
     this.id=idz;
 
-    console.log(this.id);
 
    
   

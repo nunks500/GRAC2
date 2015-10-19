@@ -104,8 +104,8 @@
 
 </NODE>
 <NODE id="2">
- <MATERIAL id="mat1"/>
- <TEXTURE id="null"/>
+ <MATERIAL id="null"/>
+ <TEXTURE id="cenas"/>
  <ROTATION axis="y" angle="-90"/>
  <ROTATION axis="x" angle="180"/>
  <TRANSLATION x="0" y="20" z="0"/>
@@ -119,3 +119,4 @@
 </NODES>
     <globals background="0 0 0 0" drawmode="fill" shading="gouraud" cullface="none" cullorder="CCW" /> 
 </SCENE>
+        

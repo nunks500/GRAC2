@@ -65,4 +65,17 @@ MyObject.prototype.initBufferz = function (tx,ty,bx,by) {
 	this.primitiveType=this.scene.gl.TRIANGLES;
 	this.initGLBuffers();
 };
-
+MyObject.prototype.updatest = function (s,t) {
+	this.maxS=s;
+	this.maxT=t;
+	    this.texCoords = [
+ 	 this.minS, this.maxT,
+ 	 this.maxS, this.maxT,
+ 	 this.minS, this.minT,
+ 	 this.maxS, this.minT
+ 	  ];
+		
+	this.primitiveType=this.scene.gl.TRIANGLES;
+	this.initGLBuffers();
+	
+};

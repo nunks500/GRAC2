@@ -58,8 +58,8 @@
         <file path="floor.png" />                             <!-- path to file -->
         <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
     </TEXTURE>
-    <TEXTURE id="pilas">
-        <file path="pilas.png" />                             <!-- path to file -->
+    <TEXTURE id="cenas">
+        <file path="wall.png" />                             <!-- path to file -->
         <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
     </TEXTURE>
 
@@ -67,7 +67,7 @@
     
 </TEXTURES>
 <leaves>
-   <LEAF id="rekt" type="rectangle" args="0.0 2.0 2.0 0.0" />
+   <LEAF id="rekt" type="rectangle" args="0.0 20.0 20.0 0.0" />
     <LEAF id="cil" type="cylinder" args="2.0 1.0 2.5 4.0 8 2" />
      <LEAF id="esfera" type="sphere" args="1.0 20 10" />
       <LEAF id="tri" type="triangle" args="0.0 0.0 0.0 3.0 0.0 0.0 0.0 3.0 0.0" />
@@ -76,31 +76,33 @@
 <ROOT id="1" />
 <NODE id="1">
  <MATERIAL id="mat1"/>
- <TEXTURE id="5"/>
+ <TEXTURE id="cenas"/>
   <DESCENDENTS>
             <DESCENDENT id="2" />
             <DESCENDENT id="3" />
                <!-- "ss" is the identifier of a node or of leaf; -->                                         <!-- may be repeatad as necessary. It can refer an -->
                                          <!-- identifier of another node or leaf, later defined in the lsx file. -->
  </DESCENDENTS>
-
 </NODE>
 <NODE id="3">
  <MATERIAL id="null"/>
- <TEXTURE id="5"/>
+ <TEXTURE id="null"/>
   <DESCENDENTS>
-        <DESCENDENT id="rekt" />          <!-- "ss" is the identifier of a node or of leaf; -->                                         <!-- may be repeatad as necessary. It can refer an -->
+        <DESCENDENT id="esfera" />          <!-- "ss" is the identifier of a node or of leaf; -->                                         <!-- may be repeatad as necessary. It can refer an -->
                                          <!-- identifier of another node or leaf, later defined in the lsx file. -->
  </DESCENDENTS>
 
 </NODE>
 <NODE id="2">
  <MATERIAL id="null"/>
- <TEXTURE id="5"/>
- <TRANSLATION x="2" y="2" z="0"/>
+ <TEXTURE id="null"/>
+ <ROTATION axis="y" angle="-90"/>
+ <ROTATION axis="x" angle="180"/>
+ <TRANSLATION x="0" y="20" z="0"/>
   <DESCENDENTS>
+  <DESCENDENT id="rekt" /> 
               <!-- "ss" is the identifier of a node or of leaf; -->                                         <!-- may be repeatad as necessary. It can refer an -->
-                <DESCENDENT id="esfera" />                            <!-- identifier of another node or leaf, later defined in the lsx file. -->
+                                         <!-- identifier of another node or leaf, later defined in the lsx file. -->
  </DESCENDENTS>
 
 </NODE>

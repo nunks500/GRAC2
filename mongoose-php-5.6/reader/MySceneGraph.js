@@ -50,11 +50,11 @@ MySceneGraph.prototype.onXMLReady=function()
 MySceneGraph.prototype.parseGlobalsExample= function(rootElement) {
 		var x = rootElement.nodeName;
 
-	if (x !== "scene" || x == null  || x.length==0) {
+	if (x !== "SCENE" || x == null  || x.length==0) {
 		return "scene element is missing.";
 	}
 
-	var y = rootElement.getElementsByTagName('initials');
+	var y = rootElement.getElementsByTagName('INITIALS');
 	 if(y!== null){
 	 		 this.fr = rootElement.getElementsByTagName('frustum');
 	 	
@@ -66,7 +66,7 @@ MySceneGraph.prototype.parseGlobalsExample= function(rootElement) {
 		
 		}
 		
-		var z = rootElement.getElementsByTagName('translate');
+		var z = rootElement.getElementsByTagName('translation');
 		if(z.length !== 0){
 		var translation = z[0];
 		this.xtrans = this.reader.getFloat(translation, 'x');
@@ -105,7 +105,7 @@ MySceneGraph.prototype.parseGlobalsExample= function(rootElement) {
 
 	 }
 
-	 var il =  rootElement.getElementsByTagName('illumination');
+	 var il =  rootElement.getElementsByTagName('ILLUMINATION');
 	 if (il.length !== 0) {
 		var il2 = rootElement.getElementsByTagName('ambient');
 		if(il2 !== null){
@@ -127,10 +127,10 @@ MySceneGraph.prototype.parseGlobalsExample= function(rootElement) {
 
 	}
 
-	var luz = rootElement.getElementsByTagName('lights');
+	var luz = rootElement.getElementsByTagName('LIGHTS');
 	{
 		if (luz.length != 0){
-			var luze = rootElement.getElementsByTagName('light');
+			var luze = rootElement.getElementsByTagName('LIGHT');
 			
 			if(luze.length != 0)
 			{
@@ -138,35 +138,42 @@ MySceneGraph.prototype.parseGlobalsExample= function(rootElement) {
 				this.arr = [];
 				for(;iterator<luze.length;iterator++){
 					
-				var a = rootElement.getElementsByTagName('enable');
+				var a = luze[iterator].getElementsByTagName('enable');
 				var idz = luze[iterator].id;
-				var ll = a[iterator];
-				var en = this.reader.getInteger(ll,'value');
-				var b = rootElement.getElementsByTagName('position');
-				var poss = b[iterator];
-				var posx = this.reader.getFloat(poss,'x');
-				var posy = this.reader.getFloat(poss,'y');
-				var posz = this.reader.getFloat(poss,'z');
-				var posw = this.reader.getFloat(poss,'w');
-				var c = rootElement.getElementsByTagName('ambient');
-				var am = c[iterator];
-				var amr = this.reader.getFloat(am,'r');
-				var amg = this.reader.getFloat(am,'g');
-				var amb = this.reader.getFloat(am,'b');
-				var ama = this.reader.getFloat(am,'a');
-				var d = rootElement.getElementsByTagName('diffuse');
-				var dif = d[iterator];
-				var difr = this.reader.getFloat(dif,'r');
-				var difg = this.reader.getFloat(dif,'g');
-				var difb = this.reader.getFloat(dif,'b');
-				var difa = this.reader.getFloat(dif,'a');
-				var e = rootElement.getElementsByTagName('specular');
-				var spec = e[iterator];
-				var specr = this.reader.getFloat(spec,'r');
-				var specg = this.reader.getFloat(spec,'g');
-				var specb = this.reader.getFloat(spec,'b');
-				var speca = this.reader.getFloat(spec,'a');
+				console.log("luz id:" + idz);
 				
+				
+				var en = this.reader.getInteger(a[0],'value');
+				
+				console.log("enable id:" + en);
+				var b = luze[iterator].getElementsByTagName('position');
+				var posx = this.reader.getFloat(b[0],'x');
+				var posy = this.reader.getFloat(b[0],'y');
+				var posz = this.reader.getFloat(b[0],'z');
+				var posw = this.reader.getFloat(b[0],'w');
+				console.log("position:" + posx + " " + posy +" " + posz + " "+posw);
+				var c = luze[iterator].getElementsByTagName('ambient');
+				
+				
+				var amr = this.reader.getFloat(c[0],'r');
+				var amg = this.reader.getFloat(c[0],'g');
+				var amb = this.reader.getFloat(c[0],'b');
+				var ama = this.reader.getFloat(c[0],'a');
+				console.log("ambient:" + amr + " " + amg +" " + amb + " "+ama);
+				var d = luze[iterator].getElementsByTagName('diffuse');
+				
+				var difr = this.reader.getFloat(d[0],'r');
+				var difg = this.reader.getFloat(d[0],'g');
+				var difb = this.reader.getFloat(d[0],'b');
+				var difa = this.reader.getFloat(d[0],'a');
+				var e = luze[iterator].getElementsByTagName('specular');
+				console.log("diffuse: " + difr + " " + difg + " " + difb + " " + difa);
+				
+				var specr = this.reader.getFloat(e[0],'r');
+				var specg = this.reader.getFloat(e[0],'g');
+				var specb = this.reader.getFloat(e[0],'b');
+				var speca = this.reader.getFloat(e[0],'a');
+				console.log("specular: " + specr + " " + specg + " " + specb + " " + speca);
 				this.luzinha = new Lights(en,posx,posy,posz,posw,amr,amg,amb,ama,difr,difg,difb,difa,specr,specg,specb,speca,idz);
 				
 
@@ -181,6 +188,7 @@ MySceneGraph.prototype.parseGlobalsExample= function(rootElement) {
 			}
 		}
 	}
+	
 	var mate = rootElement.getElementsByTagName('MATERIALS');
 	if(mate.length != 0){
 		this.matq =[];
@@ -218,30 +226,36 @@ MySceneGraph.prototype.parseGlobalsExample= function(rootElement) {
 		}
 
 	}
+
 	
 	var text = rootElement.getElementsByTagName('TEXTURES');
+	this.texturaz = [];
 	if(text.length != 0){
-		this.texturaz = [];
+
 			var texturas = text[0].getElementsByTagName('TEXTURE');
 				if(texturas.length != 0){
 			for(var u=0;u <texturas.length; u++){
 				var texturi = texturas[u];
+
 					var textid = this.reader.getString(texturi,'id');
 					var a = rootElement.getElementsByTagName('file');
-					var textpath = this.reader.getString(a[0],'path');
+					var textpath = this.reader.getString(a[u],'path');
 					var b = rootElement.getElementsByTagName('amplif_factor');
-					var amptexts = this.reader.getFloat(b[0],'s');
-					var amptextt = this.reader.getFloat(b[0],'t');
+					var amptexts = this.reader.getFloat(b[u],'s');
+					var amptextt = this.reader.getFloat(b[u],'t');
+
 					var text1 = new Texture(textid,textpath,amptexts,amptextt);
 					this.texturaz.push(text1);
 					
-
+					
 			}
 					
 				}
 			}
-	
-	var leaves = rootElement.getElementsByTagName('leaves');
+
+			
+
+	var leaves = rootElement.getElementsByTagName('LEAVES');
 	if(leaves.length != 0){
 		this.folhas=[];
 	var leaf = rootElement.getElementsByTagName('LEAF');
@@ -262,7 +276,9 @@ MySceneGraph.prototype.parseGlobalsExample= function(rootElement) {
 		
 	}
 	this.nodes = [];
-	var nodes = rootElement.getElementsByTagName('nodes');
+
+	var nodes = rootElement.getElementsByTagName('NODES');
+	
 	if (nodes.length != 0){
 		var root = rootElement.getElementsByTagName('ROOT');
 		this.rootid = this.reader.getString(root[0], 'id');
@@ -273,6 +289,7 @@ MySceneGraph.prototype.parseGlobalsExample= function(rootElement) {
 	for(var l=0;l<nodex.length;l++){
 		this.currentnodeid = this.reader.getInteger(nodex[l], 'id');
 		 var node1 = new Node(nodex[l].getAttribute('id'));
+		 
         node1.material = this.reader.getString(nodex[l].getElementsByTagName('MATERIAL')[0], 'id');
         node1.texture = this.reader.getString(nodex[l].getElementsByTagName('TEXTURE')[0], 'id');
       
@@ -333,6 +350,7 @@ MySceneGraph.prototype.parseGlobalsExample= function(rootElement) {
 	
 
 	}
+
 	
 	var elems =  rootElement.getElementsByTagName('globals');
 	
